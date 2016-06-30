@@ -1,0 +1,14 @@
+---
+
+- name: Install NTP
+  become: yes
+  apt:
+    name: ntp
+    state: latest
+
+- name: Ensure NTP is running and enabled
+  become: yes
+  service:
+    name: ntp
+    state: started
+    enabled: yes

@@ -1,0 +1,23 @@
+---
+
+- name: restart ntp
+  become: yes
+  service:
+    name: ntp
+    state: restarted
+
+- name: start ntp
+  become: yes
+  service:
+    name: ntp
+    state: started
+
+- name: stop ntp
+  become: yes
+  service:
+    name: ntp
+    state: stopped
+
+- name: update timezone
+  become: yes
+  command: dpkg-reconfigure --frontend noninteractive tzdata
