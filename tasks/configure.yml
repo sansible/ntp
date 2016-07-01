@@ -1,0 +1,20 @@
+---
+
+- name: Set timezone
+  become: yes
+  template:
+    src: timezone.j2
+    dest: /etc/timezone
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - update timezone
+
+- name: Setup NTP
+  become: yes
+  template:
+    dest: /etc/ntp.conf
+    src: ntp.conf.j2
+  notify:
+    - restart ntp
