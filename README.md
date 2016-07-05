@@ -66,3 +66,19 @@ Simple example for enabling NTP and setting timezone to Europe/London
       ntp:
         timezone: Europe/London
 ```
+
+Example of using a different set of NTP servers (AWS servers are used by default):
+
+```YAML
+- name: Install and setup NTP
+  hosts: sandbox
+
+  roles:
+    - name: sansible.ntp
+      ntp:
+        servers:
+          - 0.ubuntu.pool.ntp.org
+          - 1.ubuntu.pool.ntp.org
+          - 2.ubuntu.pool.ntp.org
+          - 3.ubuntu.pool.ntp.org
+```
