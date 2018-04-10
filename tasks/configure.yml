@@ -1,13 +1,21 @@
 ---
 
-- name: Set timezone
+- name: Set Timezone (wily and below)
   become: yes
-  template:
-    src: timezone.j2
+  copy:
+    content: "{{ sansible_ntp_timezone }}\n"
     dest: /etc/timezone
-    owner: root
-    group: root
-    mode: 0644
+  when: ansible_distribution_version | version_compare('15.10', '<=')
+  notify:
+    - update timezone
+
+- name: Set Timezone (xenial and above)
+  become: yes
+  file:
+    path: /etc/localtime
+    src: "/usr/share/zoneinfo/{{ sansible_ntp_timezone }}"
+    state: link
+  when: ansible_distribution_version | version_compare('16.04', '>=')
   notify:
     - update timezone
 

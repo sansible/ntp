@@ -1,0 +1,8 @@
+---
+
+- name: Converge
+  hosts: all
+
+  roles:
+    - role: ntp
+      sansible_ntp_timezone: Europe/London

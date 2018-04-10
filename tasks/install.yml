@@ -1,10 +1,13 @@
 ---
 
-- name: Install NTP
+- name: Install NTP, tzdata
   become: yes
   apt:
-    name: ntp
-    state: latest
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - ntp
+    - tzdata
 
 - name: Ensure NTP is running and enabled
   become: yes

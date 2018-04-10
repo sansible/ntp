@@ -14,7 +14,7 @@ filegen peerstats file peerstats type day enable
 filegen clockstats file clockstats type day enable
 
 # Specify one or more NTP servers.
-{% for ntp_server in ntp.servers %}
+{% for ntp_server in sansible_ntp_servers %}
 server {{ ntp_server }} iburst
 {% endfor %}
 
