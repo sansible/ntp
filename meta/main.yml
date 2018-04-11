@@ -1,17 +1,17 @@
 ---
 
 galaxy_info:
-  author:
-    - "David Reed"
+
   description: "Install and configures NTP."
   license: MIT
-  min_ansible_version: 1.9.6
+  min_ansible_version: 2.2
   platforms:
     - name: Ubuntu
       versions:
-        - precise
         - trusty
+        - xenial
+        - bionic
   categories:
     - development
 
-dependencies: [ ]
+dependencies: []
