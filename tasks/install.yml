@@ -17,6 +17,12 @@
     state: started
   when: ansible_service_mgr != "systemd"
 
+- name: Ensure timedatectl ntp is off for SystemD
+  become: yes
+  command: timedatectl set-ntp off
+  changed_when: no
+  when: ansible_service_mgr == "systemd"
+
 - name: Ensure NTP is running and enabled for SystemD
   become: yes
   systemd:
