@@ -13,3 +13,8 @@ def test_ntp_servers(host):
     ntp_conf = host.file('/etc/ntp.conf').content_string
     for i in range(0, 3):
         assert '%i.amazon.pool.ntp.org' % i in ntp_conf
+
+
+def test_service(host):
+    assert host.service('ntp').is_enabled
+    assert host.service('ntp').is_running
