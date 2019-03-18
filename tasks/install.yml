@@ -9,9 +9,18 @@
     - ntp
     - tzdata
 
-- name: Ensure NTP is running and enabled
+- name: Ensure NTP is running and enabled for SysV
   become: yes
   service:
+    enabled: yes
     name: ntp
     state: started
+  when: ansible_service_mgr != "systemd"
+
+- name: Ensure NTP is running and enabled for SystemD
+  become: yes
+  systemd:
     enabled: yes
+    name: ntp
+    state: started
+  when: ansible_service_mgr == "systemd"
