@@ -5,7 +5,7 @@
   copy:
     content: "{{ sansible_ntp_timezone }}\n"
     dest: /etc/timezone
-  when: ansible_distribution_version | version_compare('15.10', '<=')
+  when: ansible_distribution_version is version('15.10', '<=')
   notify:
     - update timezone
 
@@ -15,7 +15,7 @@
     path: /etc/localtime
     src: "/usr/share/zoneinfo/{{ sansible_ntp_timezone }}"
     state: link
-  when: ansible_distribution_version | version_compare('16.04', '>=')
+  when: ansible_distribution_version is version('16.04', '>=')
   notify:
     - update timezone
 
