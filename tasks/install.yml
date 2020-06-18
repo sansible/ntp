@@ -3,11 +3,10 @@
 - name: Install NTP, tzdata
   become: yes
   apt:
-    name: "{{ item }}"
+    name:
+      - ntp
+      - tzdata
     state: present
-  with_items:
-    - ntp
-    - tzdata
 
 - name: Ensure NTP is running and enabled for SysV
   become: yes
